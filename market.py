@@ -10,7 +10,7 @@ class market(object):
         self.nft_category = {"Potion" : "15", "Diamond" : "16", "Egg" : "17"}
         self.payload = {"pageNo": "1", "pageSize": 10, "sortBy": "single_price", "order": "asc", "name": "", "saleType": "", "category": "", "tokenType": ""}
 
-    def get_nft(self, name, number=20):
+    def get_1155_nft(self, name, number=20):
         self.payload["category"] = self.nft_category[name]
         self.payload["pageSize"] = number
         self.r = json.loads(requests.get(self.market_api_url, params=self.payload).text)
@@ -42,5 +42,5 @@ class market(object):
 
 if __name__ == "__main__":
     my_market = market()
-    my_market.get_nft("Diamond", 20)  # name = ["Potion", "Diamond", "Egg"]
+    my_market.get_1155_nft("Diamond", 20)  # name = ["Potion", "Diamond", "Egg"]
     my_market.get_metamon(10)
