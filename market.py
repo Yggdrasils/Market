@@ -37,7 +37,7 @@ class market(object):
                     rarity = i["value"]
                 if i["key"] == "Score":
                     score = i["value"]
-            s = str(data["token_id"]) + " Metamon: " + rarity + "  score: " + score + "  price: " + str(data["total_price"]).ljust(7) + "  url: " + self.market_url
+            s = str(data["token_id"]) + " Metamon: " + rarity + "  score: " + score + "  price: " + str(data["total_price"]).ljust(7) + "  url: " + self.market_url + str(data["id"])
             print(s)
 
 if __name__ == "__main__":
