@@ -42,7 +42,8 @@ class market(object):
         self.urls = [self.market_api_url+str(id) for id in self.ids]
         for url in self.urls:
             res = json.loads(requests.get(url).text)
-            time.sleep(0.8)
+            if self.urls.index(url) % 5 == 0: 
+                time.sleep(1)
             nft = res["data"]
             properties = nft["properties"]
             for i in properties:
