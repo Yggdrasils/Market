@@ -7,7 +7,7 @@ class market(object):
     def __init__(self):
         self.market_api_url = "https://market-api.radiocaca.com/nft-sales/"
         self.market_url = "https://market.radiocaca.com/#/market-place/"
-        self.nft_category = {"N":13, "R":23, "SR":24, "SSR":25, "Potion":15, "Diamond":16, "Egg":17, "Kiss":"20", "MML":7, "MPB":10}
+        self.nft_category = {"N":13, "R":23, "SR":24, "SSR":25, "Potion":15, "Diamond":16, "Egg":17, "Kiss":"20", "MML":7, "MPB":10, "BMM":11, "Tesla":3, "SNG":9, "DING":12, "DFDog":26, "SRDog":22}
         self.payload = {"pageNo": "1", "pageSize": 10, "sortBy": "single_price", "order": "asc", "name": "", "saleType": "", "category": "", "tokenType": ""}
 
     def price_sort(self, sort=1):
@@ -42,8 +42,6 @@ class market(object):
         self.urls = [self.market_api_url+str(id) for id in self.ids]
         for url in self.urls:
             res = json.loads(requests.get(url).text)
-            if self.urls.index(url) % 5 == 0: 
-                time.sleep(1)
             nft = res["data"]
             properties = nft["properties"]
             for i in properties:
@@ -58,9 +56,9 @@ class market(object):
 
 if __name__ == "__main__":
     my_market = market()
-    my_market.price_sort = 1    # 1 is ascending order while -1 is descending order
-    my_market.get_1155_nft("Diamond", 10)  # name = ["Potion", "Diamond", "Egg"]
-    my_market.get_1155_nft("Egg", 10)
-    my_market.get_1155_nft("Potion", 10)
-    my_market.get_721_nft("MPB", 10)       # name = ["MPB", "MML", "Kiss"]
-    my_market.get_metamon("R", 5)  # name = ["N", "R", "SR", "SSR"]
+    my_market.price_sort(1)    # 1 is ascending order while -1 is descending order
+    # my_market.get_1155_nft("Diamond", 10)  # name = ["Potion", "Diamond", "Egg"]
+    # my_market.get_1155_nft("Egg", 10)
+    # my_market.get_1155_nft("Potion", 10)
+    # my_market.get_721_nft("MPB", 20)       # name = ["MPB", "MML", "Kiss", "BMM", "Tesla", "SNG", "DING", "DFDog", "SRDog"]
+    my_market.get_metamon("N", 10)  # name = ["N", "R", "SR", "SSR"]
